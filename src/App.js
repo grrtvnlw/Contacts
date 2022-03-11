@@ -25,7 +25,7 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    updateContact(formState);
+    updateContacts(formState);
     setFormState({
       name: "",
       email: "",
@@ -37,7 +37,7 @@ const App = () => {
     });
   };
 
-  const updateContact = (contactInfo) => {
+  const updateContacts = (contactInfo) => {
     const updatedContacts = [...contacts];
 
     if (isEdit) {
