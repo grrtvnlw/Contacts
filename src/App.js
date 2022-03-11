@@ -16,7 +16,6 @@ const App = () => {
   });
 
   const handleChange = (e) => {
-    console.log(e);
     const name = e.target.name;
     const value = e.target.value;
 
@@ -27,11 +26,7 @@ const App = () => {
     e.preventDefault();
 
     if (isEdit) {
-      const updatedContacts = [...contacts];
-      updatedContacts[editIndex] = formState;
-
-      setContacts(updatedContacts);
-      setIsEdit(false);
+      editContact();
     } else {
       createContact(formState);
     }
@@ -44,6 +39,14 @@ const App = () => {
       state: "",
       zipcode: "",
     });
+  };
+
+  const editContact = () => {
+    const updatedContacts = [...contacts];
+    updatedContacts[editIndex] = formState;
+
+    setContacts(updatedContacts);
+    setIsEdit(false);
   };
 
   const createContact = (contactInfo) => {
@@ -100,7 +103,6 @@ const App = () => {
               name="phone"
               value={formState.phone}
               onChange={handleChange}
-              // placeholder={'555-555-5555'}
               mask={[
                 "(",
                 /[1-9]/,
