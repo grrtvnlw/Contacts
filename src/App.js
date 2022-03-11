@@ -25,11 +25,7 @@ const App = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (isEdit) {
-      editContact();
-    } else {
-      createContact(formState);
-    }
+    updateContact(formState);
     setFormState({
       name: "",
       email: "",
@@ -41,17 +37,15 @@ const App = () => {
     });
   };
 
-  const editContact = () => {
+  const updateContact = (contactInfo) => {
     const updatedContacts = [...contacts];
-    updatedContacts[editIndex] = formState;
 
-    setContacts(updatedContacts);
-    setIsEdit(false);
-  };
-
-  const createContact = (contactInfo) => {
-    const updatedContacts = [...contacts];
-    updatedContacts.push(contactInfo);
+    if (isEdit) {
+      updatedContacts[editIndex] = contactInfo;
+      setIsEdit(false);
+    } else {
+      updatedContacts.push(contactInfo);
+    }
 
     setContacts(updatedContacts);
   };
